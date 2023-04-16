@@ -43,11 +43,6 @@ async def generate_random_code():
 async def generator():
     return await generate_random_code()
 
-async def send_question(user_id: list, state: FSMContext):
-    async with state.proxy() as data:
-        await bot.send_message(chat_id=user_id[0],
-                               text=thread_msg)
-
 
 async def on_startup(_):
     await aqt_db.db_connect()
@@ -66,19 +61,18 @@ async def cmd_cancel(message: types.Message, state: FSMContext):
     if state is None:
         return
     await state.finish()
-    await message.reply('U canceled the process')
-    await message.answer(text=START_MSG,
-                        reply_markup=get_start_kb())
+    await message.reply('U canceled the process', reply_markup=get_start_kb())
 
 
-@dp.message_handler(Text("Create a new one"))
+
+@dp.message_handler(Text("Create a new thread"))
 async def create_aqt(message: types.Message):
     THREAD_ID = await generator()
     await aqt_db.create_new_thread(message.chat.id, THREAD_ID)
     await message.answer(text=f"Okay, ur thread's ID is {THREAD_ID}\nSend ur ID to ur friends and get anonymous questions!")
 
 
-@dp.message_handler(Text("Write into exist one"))
+@dp.message_handler(Text("Write into exist thread"))
 async def work_aqt(message: types.Message):
     await message.answer(text=WHEN_WORK_MSG,
                          reply_markup=get_cancel_kb())
@@ -99,23 +93,22 @@ async def check_and_load_id(message: types.Message, state: FSMContext) -> None:
 async def load_question(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['question'] = message.text
+    user_id = await aqt_db.get_interviewee_id(data['thread_id'])
+    #interviewer_id = await aqt_db.set_interviewer()
+    await bot.send_message(chat_id=user_id[0],
+                           text=f"U got a question from {data['thread_id']}'s thread\n\n{data['question']}\n\nTo answer on question, reply this message and write an answer")
 
-    user_id = await aqt_db.send_question(data['thread_id'])
-    user_id = user_id[0]  # Т.к. SQL возвращает typle, то извлекаем 1 элемент
-
-    await bot.send_message(chat_id=user_id,
-                           text=f"U got a question from thread {data['thread_id']}\n\n{message.text}\n\nTo answer on this, reply this message and write an answer")
-    await message.reply(
-        f"Okay, I sent ur message to {data['thread_id']} thread.  If u need to delete it, push on reaction.")
+    await message.reply(f"Okay, I sent ur message to {data['thread_id']} thread.", # If u need to delete it, push on reaction.",
+                        reply_markup=get_start_kb())
+                                                                                   # don't forget about replying and deleting
     await state.finish()
 
-
-@dp.message_handler(state=ThreadOwnerStatesGroup.answer)
-async def get_answer(message: types.Message, state: FSMContext) -> None:
-    async with state.proxy() as data:
-        data['answer'] = message.text
-    await message.reply("U got an answer from {THREAD_ID}\n\n{ANSWER_TEXT}")
-    await state.finish()
+# @dp.message_handler(state=ThreadOwnerStatesGroup.answer)
+# async def get_answer(message: types.Message, state: FSMContext) -> None:
+#     async with state.proxy() as data:
+#         data['answer'] = message.text
+#     await message.reply("U got an answer from {THREAD_ID}\n\n{ANSWER_TEXT}")
+#     await state.finish()
 
 
 @dp.callback_query_handler()
@@ -124,7 +117,7 @@ async def log_accept_handler(callback: types.CallbackQuery):
         await callback.message.delete()
         await callback.answer()
         await callback.message.answer(text=START_MSG,
-                            reply_markup=get_start_kb())
+                        reply_markup=get_start_kb())
     elif callback.data == "cancel":
         await callback.message.delete()
         await callback.answer()

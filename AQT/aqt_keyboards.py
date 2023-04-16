@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 def get_start_kb() -> ReplyKeyboardMarkup:
     kb = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
-        [KeyboardButton(text="Create a new one"), KeyboardButton(text="Write into exist one")]
+        [KeyboardButton(text="Create a new thread"), KeyboardButton(text="Write into exist thread")]
     ])
     return kb
 

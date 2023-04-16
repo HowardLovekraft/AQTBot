@@ -27,7 +27,7 @@ async def set_interviewer(user):
     db.commit()
     return interviewer
 
-async def send_question(state):
+async def get_interviewee_id(state):
     aqt_question = cur.execute('SELECT interviewee FROM questions WHERE thread = ?', (state,)).fetchone()
     db.commit()
     return aqt_question
