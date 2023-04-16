@@ -22,7 +22,7 @@ dp = Dispatcher(bot=bot,
                 storage=storage)
 
 
-class ThreadOwnnerStatesGroup(StatesGroup):
+class ThreadOwnerStatesGroup(StatesGroup):
     question = State()
     answer = State()
 
@@ -89,7 +89,7 @@ async def work_aqt(message: types.Message):
 async def check_and_load_id(message: types.Message, state: FSMContext) -> None:
     if await aqt_db.check_thread_id(message.text):
         async with state.proxy() as data:
-            data['thread_id'] = message.text   # не забудь сверить с user_id, к которому приписан THREAD_ID
+            data['thread_id'] = message.text
         await message.reply("Okay, write a question ^-^")
         await AskerStatesGroup.next()
     else:
@@ -110,7 +110,7 @@ async def load_question(message: types.Message, state: FSMContext) -> None:
     await state.finish()
 
 
-@dp.message_handler(state=ThreadOwnnerStatesGroup.answer)
+@dp.message_handler(state=ThreadOwnerStatesGroup.answer)
 async def get_answer(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['answer'] = message.text

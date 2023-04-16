@@ -6,11 +6,11 @@ async def db_connect() -> None:
     db = sq.connect('aqt.db')
     cur = db.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS questions(user TEXT, thread TEXT, asker TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS questions(interviewee TEXT, thread TEXT, interviewer TEXT)")
     db.commit()
 
 async def create_new_thread(chat_id, thread_id):
-    aqthread = cur.execute("INSERT INTO questions (user, thread) VALUES (?, ?)", (chat_id, thread_id))
+    aqthread = cur.execute("INSERT INTO questions (interviewee, thread) VALUES (?, ?)", (chat_id, thread_id))
     db.commit()
     return aqthread
 
@@ -22,13 +22,13 @@ async def check_thread_id(code):
         return False
 
 
-async def set_asker(user):
-    orator = cur.execute('INSERT INTO questions (asker) VALUES (?)', (user,))
+async def set_interviewer(user):
+    interviewer = cur.execute('INSERT INTO questions (interviewer) VALUES (?)', (user))
     db.commit()
-    return orator
+    return interviewer
 
 async def send_question(state):
-    aqt_question = cur.execute('SELECT user FROM questions WHERE thread = ?', (state,)).fetchone()
+    aqt_question = cur.execute('SELECT interviewee FROM questions WHERE thread = ?', (state,)).fetchone()
     db.commit()
     return aqt_question
 
