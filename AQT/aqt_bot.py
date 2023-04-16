@@ -1,6 +1,7 @@
 import asyncio
 import string
 import secrets
+import sqlite3 as sq
 from aiogram.types import ReplyKeyboardRemove
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.filters import Text
@@ -30,6 +31,11 @@ class AskerStatesGroup(StatesGroup):
     question = State()
 
 
+async def db_connect() -> None:
+    global db, cur
+    db = sq.connect('aqt.db')
+    cur = db.cursor()
+
 async def generate_random_code():
     letters = string.ascii_uppercase
     return ''.join(secrets.choice(letters) for i in range(6))
@@ -51,9 +57,8 @@ async def on_startup(_):
 
 @dp.message_handler(commands=["start"])
 async def cmd_start(message: types.Message):
-    await message.answer(text=PRE_START_MSG)
-    await message.answer(text=START_MSG,
-                         reply_markup=get_start_kb())
+    await message.answer(text=PRE_START_MSG,
+                         reply_markup=get_accept_ikb())
 
 
 @dp.message_handler(commands=['cancel'], state= '*')
@@ -61,7 +66,8 @@ async def cmd_cancel(message: types.Message, state: FSMContext):
     if state is None:
         return
     await state.finish()
-    await message.reply('U canceled the process',
+    await message.reply('U canceled the process')
+    await message.answer(text=START_MSG,
                         reply_markup=get_start_kb())
 
 
@@ -80,12 +86,14 @@ async def work_aqt(message: types.Message):
 
 
 @dp.message_handler(state=AskerStatesGroup.number)
-async def load_id(message: types.Message, state: FSMContext) -> None:
-    async with state.proxy() as data:
-        data['thread_id'] = message.text   # не забудь сверить с user_id, к которому приписан THREAD_ID
-    await message.reply("Okay, write a question ^-^")
-    await AskerStatesGroup.next()
-
+async def check_and_load_id(message: types.Message, state: FSMContext) -> None:
+    if await aqt_db.check_thread_id(message.text):
+        async with state.proxy() as data:
+            data['thread_id'] = message.text   # не забудь сверить с user_id, к которому приписан THREAD_ID
+        await message.reply("Okay, write a question ^-^")
+        await AskerStatesGroup.next()
+    else:
+        await message.reply("This code doesn'e exist in DB. Type valid code")
 
 @dp.message_handler(state=AskerStatesGroup.question)
 async def load_question(message: types.Message, state: FSMContext) -> None:
@@ -95,16 +103,12 @@ async def load_question(message: types.Message, state: FSMContext) -> None:
     user_id = await aqt_db.send_question(data['thread_id'])
     user_id = user_id[0]  # Т.к. SQL возвращает typle, то извлекаем 1 элемент
 
+    await bot.send_message(chat_id=user_id,
+                           text=f"U got a question from thread {data['thread_id']}\n\n{message.text}\n\nTo answer on this, reply this message and write an answer")
     await message.reply(
         f"Okay, I sent ur message to {data['thread_id']} thread.  If u need to delete it, push on reaction.")
-
     await state.finish()
-    await ThreadOwnnerStatesGroup.question.set()
 
-
-@dp.message_handler(state=ThreadOwnnerStatesGroup.question)
-async def load_answer(message: types.Message, state: FSMContext) -> None:
-    
 
 @dp.message_handler(state=ThreadOwnnerStatesGroup.answer)
 async def get_answer(message: types.Message, state: FSMContext) -> None:
@@ -113,6 +117,18 @@ async def get_answer(message: types.Message, state: FSMContext) -> None:
     await message.reply("U got an answer from {THREAD_ID}\n\n{ANSWER_TEXT}")
     await state.finish()
 
+
+@dp.callback_query_handler()
+async def log_accept_handler(callback: types.CallbackQuery):
+    if callback.data == "accept":
+        await callback.message.delete()
+        await callback.answer()
+        await callback.message.answer(text=START_MSG,
+                            reply_markup=get_start_kb())
+    elif callback.data == "cancel":
+        await callback.message.delete()
+        await callback.answer()
+        await callback.message.answer(text=NO_LOG_MSG)
 
 @dp.errors_handler(exception=BotBlocked)
 async def bot_was_blocked(update: types.Update, exception=BotBlocked) -> bool:

@@ -14,6 +14,13 @@ async def create_new_thread(chat_id, thread_id):
     db.commit()
     return aqthread
 
+async def check_thread_id(code):
+    id = cur.execute("SELECT thread FROM questions WHERE thread = ?", (code,)).fetchone()
+    if id:
+        return True
+    else:
+        return False
+
 
 async def set_asker(user):
     orator = cur.execute('INSERT INTO questions (asker) VALUES (?)', (user,))
