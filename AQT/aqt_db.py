@@ -22,10 +22,10 @@ async def check_thread_id(code):
         return False
 
 
-async def set_interviewer(user):
-    interviewer = cur.execute('INSERT INTO questions (interviewer) VALUES (?)', (user))
-    db.commit()
-    return interviewer
+#async def set_interviewer(user):
+#    interviewer = cur.execute('INSERT INTO questions (interviewer) VALUES (?)', (user))
+#    db.commit()
+#    return interviewer
 
 async def get_interviewee_id(state):
     aqt_question = cur.execute('SELECT interviewee FROM questions WHERE thread = ?', (state,)).fetchone()
