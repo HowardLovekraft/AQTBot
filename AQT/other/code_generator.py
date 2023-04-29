@@ -1,6 +1,8 @@
 import secrets
 import string
 import asyncio
+import database.aqt_db
+
 
 async def generate_random_code():
     letters = string.ascii_uppercase
