@@ -15,6 +15,20 @@ def get_cancel_kb() -> ReplyKeyboardMarkup:
 
 def get_accept_ikb() -> InlineKeyboardMarkup:
     ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Accept", callback_data="accept"), InlineKeyboardButton(text="Cancel", callback_data="cancel")]
+        [InlineKeyboardButton(text="Accept",
+                              callback_data="accept"),
+
+         InlineKeyboardButton(text="Cancel",
+                              callback_data="cancel")]
     ])
     return ikb
+
+def get_answer_ikb() -> InlineKeyboardMarkup:
+    ikb = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✅",
+                              callback_data="answer"),
+         InlineKeyboardButton(text="❌",
+                             callback_data="skip")]
+    ])
+    return ikb
+
