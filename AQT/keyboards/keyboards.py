@@ -1,25 +1,32 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+from AQT.other.messages import *
+
 
 def get_start_kb() -> ReplyKeyboardMarkup:
-    kb = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
-        [KeyboardButton(text="Create a new thread"), KeyboardButton(text="Write into exist thread")]
-    ])
-    return kb
+    kb = ReplyKeyboardBuilder()
+    kb.button(text=GET_START_KB_CREATE)
+    kb.button(text=GET_START_KB_WRITE)
+    kb.adjust(2)
+    return kb.as_markup(resize_keyboard=True)
+
 
 def get_cancel_kb() -> ReplyKeyboardMarkup:
-    kb = ReplyKeyboardMarkup(resize_keyboard=True)
-    kb.add(KeyboardButton('/cancel'))
-    return kb
+    kb = ReplyKeyboardBuilder()
+    kb.button(text='/cancel')
+    kb.adjust(1)
+    return kb.as_markup(resize_keyboard=True)
 
 def get_accept_ikb() -> InlineKeyboardMarkup:
-    ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Accept", callback_data="accept"), InlineKeyboardButton(text="Cancel", callback_data="cancel")]
-    ])
-    return ikb
+    ikb = InlineKeyboardBuilder()
+    ikb.button(text=GET_ACCEPT_IKB_ACCEPT, callback_data="accept")
+    ikb.button(text=GET_ACCEPT_IKB_CANCEL, callback_data="cancel")
+    ikb.adjust(2)
+    return ikb.as_markup()
 
 def get_answer_ikb() -> InlineKeyboardMarkup:
-    ikb = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✅"), InlineKeyboardButton(text="❌")]
-    ])
-    return ikb
+    ikb = InlineKeyboardBuilder()
+    ikb.button(text=GET_ANSWER_IKB_ANSWER, callback_data="answer")
+    ikb.button(text=GET_ANSWER_IKB_SKIP, callback_data="skip")
+    ikb.adjust(2)
+    return ikb.as_markup()

@@ -9,3 +9,5 @@
 # Cache
 __pycache__/
 
+# PyCharm Cache
+.idea/

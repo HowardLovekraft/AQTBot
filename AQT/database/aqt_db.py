@@ -1,11 +1,12 @@
 import sqlite3 as sq
+from AQT.other.messages import INTERVIEWER_MODE, INTERVIEWEE_MODE
 
 async def db_connect() -> None:
     global db, cur
     db = sq.connect('aqt.db')
     cur = db.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS questions(interviewee TEXT, interviewer NUMBER, question NUMBER, thread TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS questions(interviewee NUMBER, interviewer NUMBER, question NUMBER, thread TEXT)")
     db.commit()
 
 async def create_new_thread(chat_id, thread_id):
@@ -40,9 +41,9 @@ async def get_thread_id(user):
     return id
 
 async def get_user_id(role, state):
-    if role == "interviewee":
+    if role == INTERVIEWEE_MODE:
         member = cur.execute('SELECT interviewee FROM questions WHERE thread = ?', (state,)).fetchone()
-    if role == "interviewer":
+    if role == INTERVIEWER_MODE:
         member = cur.execute('SELECT interviewer FROM questions WHERE thread = ?', (state,)).fetchone()
     db.commit()
     return member
