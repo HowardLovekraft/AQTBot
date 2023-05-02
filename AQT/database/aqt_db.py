@@ -1,4 +1,5 @@
 import sqlite3 as sq
+from AQT.other.messages import INTERVIEWER_MODE, INTERVIEWEE_MODE
 
 async def db_connect() -> None:
     global db, cur
@@ -40,9 +41,9 @@ async def get_thread_id(user):
     return id
 
 async def get_user_id(role, state):
-    if role == "interviewee":
+    if role == INTERVIEWEE_MODE:
         member = cur.execute('SELECT interviewee FROM questions WHERE thread = ?', (state,)).fetchone()
-    if role == "interviewer":
+    if role == INTERVIEWER_MODE:
         member = cur.execute('SELECT interviewer FROM questions WHERE thread = ?', (state,)).fetchone()
     db.commit()
     return member

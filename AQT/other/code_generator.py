@@ -1,6 +1,5 @@
 import secrets
 import string
-import asyncio
 
 async def generate_random_code():
     letters = string.ascii_uppercase
