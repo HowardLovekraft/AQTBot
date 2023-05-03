@@ -1,5 +1,5 @@
-import os
-from dotenv import load_dotenv
+import asyncio
+
 from aiogram import Router, F, Bot
 from aiogram.types import CallbackQuery
 from aiogram.filters import Text
@@ -11,13 +11,12 @@ import AQT.database.aqt_db as aqt_db
 from AQT.keyboards.keyboards import *
 from AQT.other.messages import *
 from AQT.other.code_generator import generator
+from AQT.env.env_reader import get_token
 
 
-load_dotenv(dotenv_path="venv.env")
-TOKEN_API = os.getenv('TOKEN_API')
-
-bot = Bot(token=TOKEN_API)
 router = Router()
+bot = Bot(token=get_token())
+
 
 class ThreadOwner(StatesGroup):
     question = State()

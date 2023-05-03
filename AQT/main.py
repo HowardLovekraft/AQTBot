@@ -1,20 +1,18 @@
 import asyncio
-from os import getenv
-from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from handlers import commands, questionthread
 
 import AQT.database.aqt_db as aqt_db
+from AQT.env.env_reader import get_token
 
 async def main():
 
     await aqt_db.db_connect()
     print('DB  --> WORKS')
 
-    load_dotenv(dotenv_path="venv.env")
-    TOKEN_API = getenv('TOKEN_API')
-    bot = Bot(token=TOKEN_API)
+
+    bot = Bot(token=get_token())
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_routers(commands.router,
                        questionthread.router)

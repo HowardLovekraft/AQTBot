@@ -6,7 +6,7 @@ async def db_connect() -> None:
     db = sq.connect('aqt.db')
     cur = db.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS questions(interviewee NUMBER, interviewer NUMBER, question NUMBER, thread TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS questions(interviewee NUMBER, interviewer NUMBER, thread TEXT, question NUMBER)")
     db.commit()
 
 async def create_new_thread(chat_id, thread_id):
