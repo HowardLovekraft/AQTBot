@@ -11,3 +11,6 @@ __pycache__/
 
 # PyCharm Cache
 .idea/
+
+#Localisation Files
+*.pot
