@@ -3,13 +3,12 @@ from aiogram.types import CallbackQuery, Message
 from aiogram.filters import Text
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
-from aiogram.utils.i18n import SimpleI18nMiddleware
+from aiogram.utils.i18n import SimpleI18nMiddleware, I18n
 from aiogram.utils.i18n import gettext as _
 from aiogram.utils.i18n import lazy_gettext as __
 
-
 import AQT.database.aqt_db as aqt_db
-from AQT.keyboards.keyboards import *
+from AQT.keyboards.keyboards import get_start_kb, get_cancel_kb, get_answer_ikb
 from AQT.other.messages import *
 from AQT.other.code_generator import generator
 from AQT.env.env_reader import get_token
