@@ -7,6 +7,7 @@ from handlers import commands, questionthread
 import AQT.database.aqt_db as aqt_db
 from AQT.env.env_reader import get_token
 
+
 async def main():
     await aqt_db.db_connect()
     print('DB  --> WORKS')
@@ -22,4 +23,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
