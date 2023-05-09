@@ -97,7 +97,7 @@ async def get_question_id(message_id):
         return False
 
 
-# заготовка под 
+# заготовка под
 # cur.close()
 # db.close()
 # print("Соединение с PostgreSQL закрыто")

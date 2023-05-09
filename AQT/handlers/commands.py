@@ -6,22 +6,21 @@ from AQT.keyboards.keyboards import get_accept_ikb, get_start_kb
 from aiogram.utils.i18n import I18n, SimpleI18nMiddleware
 from aiogram.utils.i18n import gettext as _
 
-
 router = Router()
 i18n = I18n(path="locales", default_locale="en", domain="messages")
 router.message.middleware(SimpleI18nMiddleware(i18n))
 
 @router.message(Command("start"))
-async def cmd_start(message: Message):
+async def cmd_start(message: Message) -> None:
     await message.answer(text=_("Hi! To start working, u need to accept "
-                                      "logging your user_id and your messages' "
-                                      "ids.\nAll other data(messages, their "
-                                      "content etc.) is not subject to logging"),
+                                "logging your user_id and your messages' "
+                                "ids.\nAll other data(messages, their "
+                                "content etc.) is not subject to logging"),
                          reply_markup=get_accept_ikb())
 
 
 @router.message(Command("cancel"))
-async def cmd_cancel(message: Message, state: FSMContext):
+async def cmd_cancel(message: Message, state: FSMContext) -> None:
     if state is None:
         return
     await state.clear()

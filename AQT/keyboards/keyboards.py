@@ -16,7 +16,7 @@ def get_start_kb() -> ReplyKeyboardMarkup:
 
 def get_cancel_kb() -> ReplyKeyboardMarkup:
     kb = ReplyKeyboardBuilder()
-    kb.button(text=_('/cancel'))
+    kb.button(text='/cancel')
     kb.adjust(1)
     return kb.as_markup(resize_keyboard=True)
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-08 16:50+0500\n"
-"PO-Revision-Date: 2023-05-08 16:52+0500\n"
+"POT-Creation-Date: 2023-05-09 14:16+0500\n"
+"PO-Revision-Date: 2023-05-09 14:17+0500\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Generated-By: Babel 2.12.1\n"
+"Generated-By: Babel 2.11.0\n"
 "X-Generator: Poedit 3.2.2\n"
 
 #: C:/GitHub/AQTBot/AQT/handlers/commands.py:15
@@ -34,15 +34,16 @@ msgstr ""
 msgid "You canceled the process"
 msgstr "Вы прервали процесс"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:42
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:40
+#, python-brace-format
 msgid ""
 "Okay, your thread's ID is `{THREAD_ID}`\n"
-"Send ur ID to ur friends and get anonymous questions!"
+"Send your ID to yourfriends and get anonymous questions!"
 msgstr ""
 "Окей, ваш ID ветки - `{THREAD_ID}`\n"
 "Отправьте ID вашим друзьям и отвечайте на анонимные вопросы!"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:48
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:47
 msgid ""
 "Okay, write the thread's ID:\n"
 "(you should got it already)"
@@ -50,15 +51,16 @@ msgstr ""
 "Окей, введите ID ветки:\n"
 "(вы должны были его получить)"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:59
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:58
 msgid "Okay, write a question ^-^"
 msgstr "Окей, введите вопрос ^-^"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:62
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:61
 msgid "This code doesn't exist in DB. Type valid code"
 msgstr "Этого кода нет в БД. Введите правильный код"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:76
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:73
+#, python-brace-format
 msgid ""
 "You got a question from {data} thread\n"
 "\n"
@@ -74,13 +76,15 @@ msgstr ""
 "Нажмите на ✅, чтобы ответить на вопрос.\n"
 "Нажмите на ❌, если вы не хотите отвечать, но хотите отправить реакцию."
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:81
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:83
+#, python-brace-format
 msgid "Okay, I sent your message to {data} thread"
 msgstr "Хорошо, я отправил ваше сообщение в {data} ветку"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:92
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:94
+#, python-brace-format
 msgid ""
-"You got a question from {code} thread\n"
+"You got an answer from {code} thread\n"
 "\n"
 "{message}"
 msgstr ""
@@ -88,11 +92,11 @@ msgstr ""
 "\n"
 "{message}"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:95
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:101
 msgid "Okay, I sent your answer"
 msgstr "Хорошо, я отправил ваш ответ"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:104
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:110
 msgid ""
 "Do you want to create a new question thread's link or write a question "
 "to the already exist thread?"
@@ -100,7 +104,7 @@ msgstr ""
 "Вы хотите создать новую ветку вопросов или работать с уже существующей "
 "веткой?"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:109
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:115
 msgid ""
 "Okay, but you can't use this bot without logging.\n"
 "Type /start if you want to start use this bot and accept logging"
@@ -108,11 +112,11 @@ msgstr ""
 "Окей, но вы не можете использовать бота без логгирования.\n"
 "Введите /start, если вы хотите работать с ботом и разрешите ведение логов"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:122
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:128
 msgid "Okay, write an answer:"
 msgstr "Окей, введите ответ:"
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:126
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:132
 msgid ""
 "Your question has been watched by thread owner, but he preferred to "
 "ignore it."
@@ -120,7 +124,7 @@ msgstr ""
 "Ваш вопрос был увиден создателем ветки, но он предпочел его "
 "проигнорировать."
 
-#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:128
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:134
 msgid "Okay, I sent your feedback"
 msgstr "Окей, я отправил вашу реакцию"
 
@@ -139,3 +143,9 @@ msgstr "Подтвердить"
 #: C:/GitHub/AQTBot/AQT/keyboards/keyboards.py:27
 msgid "Cancel"
 msgstr "Отклонить"
+
+#~ msgid "cancel"
+#~ msgstr "отмена"
+
+#~ msgid "/cancel"
+#~ msgstr "/отмена"
