@@ -14,7 +14,9 @@ __pycache__/
 
 #I18n Files 
 *.pot
-*.mo
+*.po
 
 #Script for i18n
 *.bat
+
+

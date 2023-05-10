@@ -37,7 +37,8 @@ async def create_aqt(message: Message) -> None:
     THREAD_ID = await generator()
     await aqt_db.create_new_thread(message.chat.id, THREAD_ID)
     await message.answer(text=_("Okay, your thread's ID is `{THREAD_ID}`\nSend your ID to your"
-                                "friends and get anonymous questions!").format_map({
+                                "friends and get anonymous questions!\n"
+                                "(You can copy the ID by click on it)").format_map({
         "THREAD_ID": "%(THREAD_ID)s"}) % {"THREAD_ID": THREAD_ID},
                          parse_mode="Markdown")
 
