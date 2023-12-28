@@ -1,10 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
-from AQT.other.messages import *
-from aiogram.utils.i18n import I18n
+from other.messages import *
 from aiogram.utils.i18n import gettext as _
-
-i18n = I18n(path="locales", default_locale="en", domain="messages")
 
 def get_start_kb() -> ReplyKeyboardMarkup:
     kb = ReplyKeyboardBuilder()

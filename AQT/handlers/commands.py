@@ -2,12 +2,13 @@ from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from AQT.keyboards.keyboards import get_accept_ikb, get_start_kb
-from aiogram.utils.i18n import I18n, SimpleI18nMiddleware
+from keyboards.keyboards import get_accept_ikb, get_start_kb
+from aiogram.utils.i18n import SimpleI18nMiddleware
 from aiogram.utils.i18n import gettext as _
 
+from main import i18n
+
 router = Router()
-i18n = I18n(path="locales", default_locale="en", domain="messages")
 router.message.middleware(SimpleI18nMiddleware(i18n))
 
 @router.message(Command("start"))

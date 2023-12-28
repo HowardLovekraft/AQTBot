@@ -1,10 +1,13 @@
 import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-from handlers import commands, questionthread
+from aiogram.utils.i18n import I18n
 
-import AQT.database.aqt_db as aqt_db
-from AQT.env.env_reader import get_token
+i18n = I18n(path="locales", default_locale="en", domain="messages")
+
+import database.aqt_db as aqt_db
+from handlers import commands, questionthread
+from env.env_reader import get_token
 
 
 async def main():

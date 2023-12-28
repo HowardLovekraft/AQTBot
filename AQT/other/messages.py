@@ -1,5 +1,3 @@
-from aiogram.utils.i18n import I18n, SimpleI18nMiddleware
-
 # просто значки +/- и переменные вместо текста, имитация ролей
 GET_ANSWER_IKB_ANSWER = "✅"
 GET_ANSWER_IKB_SKIP = "❌"

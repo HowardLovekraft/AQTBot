@@ -1,6 +1,6 @@
 import psycopg as pg
-from AQT.other.messages import INTERVIEWER_MODE, INTERVIEWEE_MODE
-from AQT.env.env_reader import get_pass, get_user, get_host, get_name, get_port
+from other.messages import INTERVIEWER_MODE, INTERVIEWEE_MODE
+from env.env_reader import get_pass, get_user, get_host, get_name, get_port
 
 
 async def db_connect():
