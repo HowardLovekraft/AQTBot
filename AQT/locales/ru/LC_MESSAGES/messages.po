@@ -1,0 +1,143 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-12-29 00:55+0500\n"
+"PO-Revision-Date: 2023-12-29 00:54+0500\n"
+"Last-Translator: \n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: C:/GitHub/AQTBot/AQT/handlers/commands.py:16
+msgid ""
+"Hi! To start working, u need to accept logging your user_id and your "
+"messages' ids.\n"
+"All other data(messages, their content etc.) is not subject to logging"
+msgstr ""
+"Привет! Чтобы начать работу, вам нужно разрешить сохранять ваш id и ID "
+"ваших сообщений.\n"
+"Все остальные данные (сообщения, их содержание и т.д.) не сохраняются"
+
+#: C:/GitHub/AQTBot/AQT/handlers/commands.py:28
+msgid "You canceled the process"
+msgstr "Вы закрыли процесс"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:41
+msgid ""
+"Okay, your thread's ID is `{THREAD_ID}`\n"
+"Send your ID to your friends and get anonymous questions!\n"
+"(You can copy the ID by click on it)"
+msgstr ""
+"Окей, ID вашей ветки - `{THREAD_ID}`\n"
+"Отправляйте ID вашим друзьям и отвечайте на анонимные вопросы!\n"
+"(Вы можете скопировать ID, нажав на него)"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:50
+msgid ""
+"Okay, write the thread's ID:\n"
+"(you should got it already)"
+msgstr ""
+"Окей, введите ID ветки:\n"
+"(вы должны были его заранее получить)"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:64
+msgid "Okay, write a question ^-^"
+msgstr "Окей, введите вопрос ^-^"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:67
+msgid "This code doesn't exist in DB. Type valid code"
+msgstr "Этого кода нет в базе данных. Введите существующий код"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:79
+msgid ""
+"You got a question from {data} thread\n"
+"\n"
+"{message}\n"
+"\n"
+"Click on ✅ to answer on question.\n"
+"Click on ❌ if you don't want to answer, but need give feedback."
+msgstr ""
+"Вы получили сообщение из ветки {data}\n"
+"\n"
+"{message}\n"
+"\n"
+"Нажмите на ✅, чтобы ответить на вопрос.\n"
+"Нажмите на ❌, если вы не хотите отвечать, но хотите отправить реакцию."
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:89
+msgid "Okay, I sent your message to {data} thread"
+msgstr "Хорошо, я отправил ваше соообщение в ветку {data}"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:100
+msgid ""
+"You got an answer from {code} thread\n"
+"\n"
+"{message}"
+msgstr ""
+"Вы получили ответ на сообщение из ветки {code}\n"
+"\n"
+"{message}"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:107
+msgid "Okay, I sent your answer"
+msgstr "Хорошо, я отправил ваш ответ"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:116
+msgid ""
+"Do you want to create a new question thread's link or write a question to"
+" the already exist thread?"
+msgstr ""
+"Вы хотите создать новую ветку вопросов или работать с уже существующей "
+"веткой?"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:121
+msgid ""
+"Okay, but you can't use this bot without logging.\n"
+"Type /start if you want to start use this bot and accept logging"
+msgstr ""
+"Хорошо, но вы не cможете использовать бота без логгирования.\n"
+"Введите /start, если вы хотите работать с ботом и разрешите ведение логов"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:134
+msgid "Okay, write an answer:"
+msgstr "Хорошо, введите ответ:"
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:138
+msgid ""
+"Your question has been watched by thread owner, but he preferred to "
+"ignore it."
+msgstr ""
+"Ваш вопрос был увиден создателем ветки, но он предпочел его "
+"проигнорировать."
+
+#: C:/GitHub/AQTBot/AQT/handlers/questionthread.py:140
+msgid "Okay, I sent your feedback"
+msgstr "Окей, я отправил вашу реакцию"
+
+#: C:/GitHub/AQTBot/AQT/keyboards/keyboards.py:8
+msgid "Create a new one"
+msgstr "Создать новую ветку"
+
+#: C:/GitHub/AQTBot/AQT/keyboards/keyboards.py:9
+msgid "Write into exist one"
+msgstr "Работать с существующей веткой"
+
+#: C:/GitHub/AQTBot/AQT/keyboards/keyboards.py:22
+msgid "Accept"
+msgstr "Да"
+
+#: C:/GitHub/AQTBot/AQT/keyboards/keyboards.py:24
+msgid "Cancel"
+msgstr "Нет"
+
