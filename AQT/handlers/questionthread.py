@@ -128,7 +128,7 @@ async def get_answer_handler(callback: CallbackQuery, state: FSMContext) -> None
     await callback.answer()
     await callback.message.delete()
     code = await aqt_db.get_thread_id(callback.message.chat.id)
-    chat_id = await aqt_db.get_user_id(INTERVIEWEE_MODE, code[0])
+    chat_id = await aqt_db.get_user_id(INTERVIEWER_MODE, code[0])
     if callback.data == "answer":
         await callback.message.answer(text=_("Okay, write an answer:"))
         await state.set_state(ThreadOwner.answer)
