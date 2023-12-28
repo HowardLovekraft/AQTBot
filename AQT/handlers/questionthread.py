@@ -1,3 +1,4 @@
+import string
 from aiogram import F, Bot, Router
 from aiogram.types import CallbackQuery, Message
 from aiogram.filters import Text
@@ -52,12 +53,15 @@ async def work_aqt(message: Message, state: FSMContext) -> None:
 
 @router.message(ThreadAsker.number, F.text)
 async def check_and_load_id(message: Message, state: FSMContext) -> None:
-    if await aqt_db.check_thread_id(message.text):
-        data = await state.get_data()
-        data['thread_id'] = message.text
-        await state.set_data(data)
-        await message.reply(_("Okay, write a question ^-^"))
-        await state.set_state(ThreadAsker.question)
+    if (len(message.text) == 6 and
+            message.text.count(string.whitespace) == 0 and
+            message.text.count(string.punctuation) == 0 and
+            await aqt_db.check_thread_id(message.text)):
+            data = await state.get_data()
+            data['thread_id'] = message.text
+            await state.set_data(data)
+            await message.reply(_("Okay, write a question ^-^"))
+            await state.set_state(ThreadAsker.question)
     else:
         await message.reply(_("This code doesn't exist in DB. Type valid code"))
 
@@ -93,10 +97,10 @@ async def load_answer(message: Message, state: FSMContext) -> None:
     user_id = await aqt_db.get_user_id(INTERVIEWER_MODE, code[0])
     await bot.send_message(chat_id=user_id[0],
                            text=_("You got an answer from {code} thread\n\n{message}").format_map({
-        "code": "%(code)s",
-        "message": "%(message)s"
-}) % {"code": code[0],
-      "message": message.text},
+                               "code": "%(code)s",
+                               "message": "%(message)s"
+                           }) % {"code": code[0],
+                                 "message": message.text},
                            parse_mode="Markdown",
                            reply_markup=get_start_kb())
     await message.reply(text=_("Okay, I sent your answer"),
