@@ -48,7 +48,7 @@ async def create_new_interviewer(chat_id, question_id, thread_id):
     question - question_id соотвественно
     """
     with pg.connect(user=get_user(), password=get_pass(), host=get_host(),
-                          port=get_port(), dbname=get_name()) as conn:
+                    port=get_port(), dbname=get_name()) as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT thread FROM questions")
             all_ids = cur.fetchall()
@@ -119,7 +119,7 @@ async def get_question_id(message_id):
     иначе - False
     """
     with pg.connect(user=get_user(), password=get_pass(), host=get_host(),
-                          port=get_port(), dbname=get_name()) as conn:
+                    port=get_port(), dbname=get_name()) as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT question FROM questions")
             all_ids = cur.fetchall()
