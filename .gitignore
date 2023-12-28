@@ -12,3 +12,12 @@ __pycache__/
 
 # PyCharm Cache
 .idea/
+
+#I18n Files 
+*.pot
+*.po
+
+#Script for i18n
+*.bat
+
+
