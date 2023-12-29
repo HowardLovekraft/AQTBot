@@ -1,6 +1,6 @@
 import psycopg as pg
-from other.messages import INTERVIEWER_MODE, INTERVIEWEE_MODE
 from env.env_reader import get_pass, get_user, get_host, get_name, get_port
+from main import text_msgs
 
 
 async def db_connect():
@@ -9,9 +9,9 @@ async def db_connect():
                     port=get_port(), dbname=get_name()) as conn:
         with conn.cursor() as cur:
             create_table_query = """CREATE TABLE IF NOT EXISTS questions (
-            interviewer INTEGER,
-            interviewee INTEGER,
-            question TEXT, 
+            interviewer BIGINT,
+            interviewee BIGINT,
+            question BIGINT, 
             thread TEXT NOT NULL
             );"""
             cur.execute(create_table_query)
@@ -101,10 +101,10 @@ async def get_user_id(role, state):
     with pg.connect(user=get_user(), password=get_pass(), host=get_host(),
                     port=get_port(), dbname=get_name()) as conn:
         with conn.cursor() as cur:
-            if role == INTERVIEWEE_MODE:
+            if role == text_msgs["INTERVIEWEE_MODE"]:
                 cur.execute('SELECT interviewee FROM questions WHERE thread = %s',
                             (state,))
-            elif role == INTERVIEWER_MODE:
+            elif role == text_msgs["INTERVIEWER_MODE"]:
                 cur.execute('SELECT interviewer FROM questions WHERE thread = %s',
                             (state,))
             member = cur.fetchone()

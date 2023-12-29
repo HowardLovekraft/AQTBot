@@ -1,7 +1,8 @@
 from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
-from other.messages import *
 from aiogram.utils.i18n import gettext as _
+from main import text_msgs
+
 
 def get_start_kb() -> ReplyKeyboardMarkup:
     kb = ReplyKeyboardBuilder()
@@ -28,7 +29,7 @@ def get_accept_ikb() -> InlineKeyboardMarkup:
 
 def get_answer_ikb() -> InlineKeyboardMarkup:
     ikb = InlineKeyboardBuilder()
-    ikb.button(text=GET_ANSWER_IKB_ANSWER, callback_data="answer")
-    ikb.button(text=GET_ANSWER_IKB_SKIP, callback_data="skip")
+    ikb.button(text=text_msgs["GET_ANSWER_IKB_ANSWER"], callback_data="answer")
+    ikb.button(text=text_msgs["GET_ANSWER_IKB_SKIP"], callback_data="skip")
     ikb.adjust(2)
     return ikb.as_markup()
