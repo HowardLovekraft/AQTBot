@@ -52,9 +52,10 @@ async def work_aqt(message: Message, state: FSMContext) -> None:
 
 @router.message(ThreadAsker.number, F.text)
 async def check_and_load_id(message: Message, state: FSMContext) -> None:
-    if await code_checker(message.text):
+    text_message = message.text.upper()
+    if await code_checker(text_message):
         data = await state.get_data()
-        data['thread_id'] = message.text
+        data['thread_id'] = text_message
         await state.set_data(data)
         await message.reply(_("Okay, write a question ^-^"))
         await state.set_state(ThreadAsker.question)
@@ -68,8 +69,8 @@ async def load_question(message: Message, state: FSMContext) -> None:
     data = await state.get_data()
     data['question'] = message.text
     await state.set_data(data)
-    await aqt_db.create_new_interviewer(message.chat.id, message.message_id, data["thread_id"])
-    user_id = await aqt_db.get_user_id(text_msgs["INTERVIEWEE_MODE"], data['thread_id'])
+    await aqt_db.create_new_asker(message.chat.id, message.message_id, data["thread_id"])
+    user_id = await aqt_db.get_user_id(text_msgs["THREADOWNER_MODE"], data['thread_id'])
     await bot.send_message(chat_id=user_id[0],
                            text=_("You got a question from {data} thread\n\n{message}"
                                   "\n\nClick on ✅ to answer on question.\n"
@@ -90,7 +91,7 @@ async def load_question(message: Message, state: FSMContext) -> None:
 @router.message(ThreadOwner.answer)
 async def load_answer(message: Message, state: FSMContext) -> None:
     code = await aqt_db.get_thread_id(message.chat.id)
-    user_id = await aqt_db.get_user_id(text_msgs["INTERVIEWER_MODE"], code[0])
+    user_id = await aqt_db.get_user_id(text_msgs["THREADASKER_MODE"], code[0])
     await bot.send_message(chat_id=user_id[0],
                            text=_("You got an answer from {code} thread\n\n{message}").format_map({
                                "code": "%(code)s",
@@ -123,11 +124,11 @@ async def get_answer_handler(callback: CallbackQuery, state: FSMContext) -> None
     await callback.answer()
     await callback.message.delete()
     code = await aqt_db.get_thread_id(callback.message.chat.id)
-    chat_id = await aqt_db.get_user_id(text_msgs["INTERVIEWER_MODE"], code[0])
     if callback.data == "answer":
         await callback.message.answer(text=_("Okay, write an answer:"))
         await state.set_state(ThreadOwner.answer)
     elif callback.data == "skip":
+        chat_id = await aqt_db.get_user_id(text_msgs["THREADASKER_MODE"], code[0])
         await bot.send_message(chat_id=chat_id[0],
                                text=_("Your question has been watched by thread owner, "
                                       "but he preferred to ignore it."))
