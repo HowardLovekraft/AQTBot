@@ -15,14 +15,14 @@ from handlers import commands, questionthread # requires text_msgs and i18n_midd
 
 async def main():
     await aqt_db.db_connect()
-
     print('DB  --> WORKS')
+
     bot = Bot(token=get_token())
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_routers(commands.router,
                        questionthread.router)
-
     print('BOT --> WORKS')
+
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot,
                            allowed_updates=dp.resolve_used_update_types())

@@ -1,6 +1,6 @@
 {
   "GET_ANSWER_IKB_ANSWER": "✅",
   "GET_ANSWER_IKB_SKIP": "❌",
-  "INTERVIEWER_MODE": "interviewer",
-  "INTERVIEWEE_MODE": "interviewee"
+  "THREADOWNER_MODE": "thread_owner",
+  "THREADASKER_MODE": "thread_asker"
 }
