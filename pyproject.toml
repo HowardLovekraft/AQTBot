@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "aqtbot"
+version = "2.0.0"
+description = "AQT Bot - ask questions anonim!"
+authors = ["HowardLovekraft <117375241+HowardLovekraft@users.noreply.github.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dotenv = "^1.0.1"
+psycopg = "^3.2.1"
+aiogram = {extras = ["i18n"], version = "^3.10.0"}
+psycopg-binary = "^3.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+package-mode = false

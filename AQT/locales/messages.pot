@@ -1,0 +1,111 @@
+# Translations template for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-08-02 20:45+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: handlers/commands.py:17
+msgid ""
+"Hi! To start working, u need to accept logging your user_id and your "
+"messages' ids.\n"
+"All other data(messages, their content etc.) is not subject to logging"
+msgstr ""
+
+#: handlers/commands.py:29
+msgid "You canceled the process"
+msgstr ""
+
+#: handlers/questionthread.py:36
+msgid ""
+"Окей, твой ID ветки - `{THREAD_ID}`\n"
+"Отправь ID своим друзьям и получай анонимные вопросы!"
+msgstr ""
+
+#: handlers/questionthread.py:42
+msgid ""
+"Окей, введи ID ветки\n"
+"(он у тебя уже должен быть)"
+msgstr ""
+
+#: handlers/questionthread.py:53
+msgid "Окей, введи вопрос ^-^"
+msgstr ""
+
+#: handlers/questionthread.py:56
+msgid "Этого кода нет в базе данных. Введи существующий код"
+msgstr ""
+
+#: handlers/questionthread.py:71
+msgid ""
+"Ты получил вопрос в ветке {data}\n"
+"\n"
+"{message}\n"
+"\n"
+"Кликни на ✅, чтобы ответить на вопрос.\n"
+"Кликни на ❌, если не хочешь отвечать, но хочешь отправить факт просмотра."
+msgstr ""
+
+#: handlers/questionthread.py:77
+msgid "Окей, я отправил твоё сообщение в ветку {data}."
+msgstr ""
+
+#: handlers/questionthread.py:88
+msgid ""
+"Ты получил ответ из ветки {code}\n"
+"\n"
+"{message}"
+msgstr ""
+
+#: handlers/questionthread.py:90
+msgid "Окей, я отправил твой ответ"
+msgstr ""
+
+#: handlers/questionthread.py:100
+msgid ""
+"Хочешь создать новую ветку вопросов или написать вопрос в существующую "
+"ветку?"
+msgstr ""
+
+#: handlers/questionthread.py:115
+msgid "Окей, напиши ответ"
+msgstr ""
+
+#: handlers/questionthread.py:119
+msgid ""
+"Твой вопрос был просмотрен создателем ветки, но он предпочел не отвечать "
+"на него."
+msgstr ""
+
+#: handlers/questionthread.py:120
+msgid "Окей, я отправлю твою реакцию"
+msgstr ""
+
+#: keyboards/keyboards.py:10
+msgid "Create a new one"
+msgstr ""
+
+#: keyboards/keyboards.py:11
+msgid "Write into exist one"
+msgstr ""
+
+#: keyboards/keyboards.py:24
+msgid "Accept"
+msgstr ""
+
+#: keyboards/keyboards.py:26
+msgid "Cancel"
+msgstr ""
+

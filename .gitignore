@@ -1,0 +1,13 @@
+# Only PyCharm Cache and __pychache__
+.idea/
+__pycache__/
+
+# Environment Files
+venv/
+venv.env
+
+# Poetry Files
+poetry.lock
+
+# Compiled i18n files
+*.mo
